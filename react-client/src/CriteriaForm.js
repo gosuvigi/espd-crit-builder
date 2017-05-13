@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {reduxForm} from 'redux-form';
-import Criterion from './Criterion';
+import EditCriterion from './EditCriterion';
 
 const CriteriaForm = props => {
     const {handleSubmit, pristine, reset, submitting} = props;
@@ -11,11 +11,11 @@ const CriteriaForm = props => {
         <form onSubmit={handleSubmit} className="criteriaForm">
             <div className="container-fluid">
                 <div className="row">
-                    <Criterion/>
+                    <EditCriterion/>
                 </div>
                 <div className="row">
                     <button type="submit" disabled={submitting} className="btn btn-primary">Submit</button>
-                    <button type="button" disabled={pristine || submitting} onClick={reset}>
+                    <button type="button" disabled={pristine || submitting} onClick={reset} className="btn btn-default">
                         Clear Values
                     </button>
                 </div>
