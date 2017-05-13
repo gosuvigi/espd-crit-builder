@@ -9,6 +9,8 @@ export const types = {
     IS_SUBMITTING: 'IS_SUBMITTING'
 };
 
+const initialCriteria = require('./criteria.json');
+
 export const actions = {
     submitCriteria: (criterion) => {
         return (dispatch) => {
@@ -35,7 +37,7 @@ export const actions = {
     }),
 };
 
-export function reducer(state = {}, action = {}) {
+export function reducer(state = {initialCriteria}, action = {}) {
     switch (action.type) {
         case types.RECEIVED_VALUES:
             return {...state, values: action.payload};

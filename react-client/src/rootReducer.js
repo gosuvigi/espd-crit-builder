@@ -5,10 +5,6 @@ import {combineReducers} from 'redux';
 import {reducer as reduxFormReducer} from 'redux-form';
 import {reducer as criteriaReducer} from './criterion/index';
 
-function criteria(state = {}, action) {
-    return state;
-}
-
 const rootReducer = combineReducers({
     criteria: criteriaReducer,
     form: reduxFormReducer, // mounted under "form"
