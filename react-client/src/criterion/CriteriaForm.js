@@ -2,10 +2,12 @@
  * Created by vigi on 5/11/2017 8:38 PM.
  */
 import React from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import EditCriterion from './EditCriterion';
 
-const CriteriaForm = props => {
+let CriteriaForm = props => {
     const {handleSubmit, pristine, reset, submitting} = props;
     return (
         <form onSubmit={handleSubmit} className="criteriaForm">
@@ -25,6 +27,9 @@ const CriteriaForm = props => {
 };
 
 export default reduxForm({
-    form: 'criteriaForm', // a unique identifier for this form
+    form: 'criteriaForm', // a unique identifier for this form,
+    destroyOnUnmount: false,        // <------ preserve form data
+    enableReinitialize: true,       // <------ permits to reinitialize the initial values
+    keepDirtyOnReinitialize: true,   // <------ keep the values added/changed by the user
 })(CriteriaForm);
 

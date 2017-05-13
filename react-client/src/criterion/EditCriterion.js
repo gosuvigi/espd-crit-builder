@@ -90,24 +90,6 @@ const renderSingleRequirementGroup = (reqGroup, index, fields, identifier, nesti
                         onClick={() => fields.remove(index)}
                     />
                 </div>
-                <div className="col-md-1">
-                    <label htmlFor="visible">Show/hide</label>
-                    <div>
-                        <Field
-                            name={`${reqGroup}.visible`}
-                            id="visible"
-                            component="input"
-                            type="checkbox"
-                        />
-                    </div>
-                </div>
-                <div className="col-md-1">
-                    <button
-                        type="button" className="btn btn-danger glyphicon glyphicon-arrow-down"
-                        title="Show/hide"
-                        data-toggle="collapse" data-target="#demo"
-                    />
-                </div>
             </div>
             <div className="row">
                 <Field
@@ -117,7 +99,8 @@ const renderSingleRequirementGroup = (reqGroup, index, fields, identifier, nesti
                     label="Group Name"
                     className="text-left"
                 />
-                <FieldArray name={`${reqGroup}.requirements`} component={renderRequirements} identifier={newIdentifier}
+                <FieldArray name={`${reqGroup}.requirements`} component={renderRequirements}
+                            identifier={newIdentifier}
                             nesting={nesting + 1}/>
                 <FieldArray name={`${reqGroup}.requirementGroups`} component={renderRequirementGroups}
                             identifier={newIdentifier} nesting={nesting + 1}/>
