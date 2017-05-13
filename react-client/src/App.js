@@ -14,8 +14,14 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo"/>
                     <h2>Welcome to ESPD</h2>
                 </div>
-                <CriteriaForm onSubmit={showResults}/>
-                <Values form="criteriaForm"/>
+                <div>
+                    <div>
+                        <CriteriaForm onSubmit={showResults}/>
+                    </div>
+                    <div>
+                        <Values form="criteriaForm"/>
+                    </div>
+                </div>
             </div>
         );
     }
