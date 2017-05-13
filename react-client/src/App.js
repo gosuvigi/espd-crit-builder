@@ -4,7 +4,6 @@ import {connect} from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 import CriteriaForm from './criterion/CriteriaForm';
-import showResults from './showResults';
 import {actions} from './criterion/index';
 import {Values} from 'redux-form-website-template';
 import 'bootstrap/dist/css/bootstrap.css';

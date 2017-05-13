@@ -21,25 +21,27 @@ const renderSingleRequirement = (requirement, index, fields, identifier) => {
             <div className="row">
                 <div className="col-md-3">
                     <Field
-                        name={`${requirement}.name`}
+                        name={`${requirement}.description`}
                         type="text"
                         component={renderField}
-                        label={`Req #${newIdentifier} name`}
+                        label={`Req #${newIdentifier} description`}
                     />
                 </div>
                 <div className="col-md-3">
                     <label>Type</label>
                     <div>
                         <Field
-                            name={`${requirement}.type`}
+                            name={`${requirement}.responseType`}
                             component="select"
                             label="Requirement Type"
                         >
-                            <option>--Select--</option>
+                            <option value="INDICATOR">INDICATOR</option>
                             <option value="DESCRIPTION">DESCRIPTION</option>
                             <option value="AMOUNT">AMOUNT</option>
                             <option value="DATE">DATE</option>
                             <option value="NUMBER">NUMBER</option>
+                            <option value="PERIOD">PERIOD</option>
+                            <option value="EVIDENCE">EVIDENCE</option>
                         </Field>
                     </div>
                 </div>
