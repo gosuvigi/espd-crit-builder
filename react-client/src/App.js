@@ -10,10 +10,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const {submitCriteria} = this.props;
         return (

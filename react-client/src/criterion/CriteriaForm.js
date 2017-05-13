@@ -2,8 +2,6 @@
  * Created by vigi on 5/11/2017 8:38 PM.
  */
 import React from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import EditCriterion from './EditCriterion';
 

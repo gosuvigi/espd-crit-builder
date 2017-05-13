@@ -197,3 +197,7 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+# Folders created by the Maven Frontend Plugin
+build/
+node/

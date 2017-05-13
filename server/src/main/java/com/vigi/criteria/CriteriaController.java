@@ -30,7 +30,7 @@ class CriteriaController {
         this.xmlExporter = xmlExporter;
     }
 
-    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public String getEconomicEntity(@RequestBody Criterion criterion,
                                     HttpServletResponse response) throws IOException {
         System.out.println(criterion);

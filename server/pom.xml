@@ -19,8 +19,23 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>com.vigi</groupId>
+			<artifactId>react-client</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>groovy</artifactId>
+					<groupId>org.codehaus.groovy</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>thymeleaf-layout-dialect</artifactId>
+					<groupId>nz.net.ultraq.thymeleaf</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

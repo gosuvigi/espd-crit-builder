@@ -26,7 +26,7 @@ import static org.springframework.util.CollectionUtils.isEmpty;
 @Component
 public class ResponseTypeTransformer {
 
-    public ESPDResponseType buildResponseType(Criterion criterion) {
+    ESPDResponseType buildResponseType(Criterion criterion) {
         ESPDResponseType responseType = new ESPDResponseType();
 
         addCriteria(criterion, responseType);
@@ -107,8 +107,9 @@ public class ResponseTypeTransformer {
         idType.setSchemeVersionID("1.0.2");
         requirementType.setID(idType);
 
-
-        requirementType.setResponseDataType(requirement.getResponseType().name());
+        if (requirement.getResponseType() != null) {
+            requirementType.setResponseDataType(requirement.getResponseType().name());
+        }
 
         requirementType.getResponse().add(buildResponse(requirement));
 

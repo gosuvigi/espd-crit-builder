@@ -19,8 +19,19 @@ export function post(url, params = {}) {
     return fetch(url, {
         method: 'post',
         headers: {
-            'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Access-Control-Expose-Headers': 'Location',
+        },
+        body: JSON.stringify(params),
+        credentials: 'same-origin'
+    });
+}
+
+export function postForm(url, params = {}) {
+    return fetch(url, {
+        method: 'post',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
             'Access-Control-Expose-Headers': 'Location',
         },
         body: JSON.stringify(params),
