@@ -1,4 +1,4 @@
-package com.vigi;
+package com.vigi.criteria;
 
 import lombok.Data;
 

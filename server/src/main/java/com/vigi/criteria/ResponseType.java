@@ -1,4 +1,4 @@
-package com.vigi;
+package com.vigi.criteria;
 
 /**
  * Created by vigi on 5/13/2017.
