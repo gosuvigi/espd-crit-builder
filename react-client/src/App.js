@@ -15,6 +15,7 @@ class App extends Component {
     }
 
     render() {
+        const {submitCriteria} = this.props;
         return (
             <div className="App">
                 <div className="App-header">
@@ -23,9 +24,9 @@ class App extends Component {
                 </div>
                 <div>
                     <div>
-                        <CriteriaForm onSubmit={this.props.submitCriteria}/>
+                        <CriteriaForm onSubmit={submitCriteria}/>
                     </div>
-                    <div>
+                    <div className="text-left">
                         <Values form="criteriaForm"/>
                     </div>
                 </div>
