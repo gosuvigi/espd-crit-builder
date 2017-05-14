@@ -103,12 +103,12 @@ class QualificationApplicationResponseTransformer {
 
     private void addGroups(Criterion criterion, TenderingCriterionType criterionType,
                            QualificationApplicationResponseType responseType) {
-        if (isEmpty(criterion.getRequirementGroups())) {
+        if (isEmpty(criterion.getGroups())) {
             return;
         }
 
-        List<TenderingCriterionPropertyGroupType> groupTypes = new ArrayList<>(criterion.getRequirementGroups().size() + 1);
-        for (RequirementGroup group : criterion.getRequirementGroups()) {
+        List<TenderingCriterionPropertyGroupType> groupTypes = new ArrayList<>();
+        for (RequirementGroup group : criterion.getGroups()) {
             groupTypes.add(buildGroupType(group, responseType));
         }
         criterionType.getTenderingCriterionPropertyGroup().addAll(groupTypes);
@@ -250,12 +250,12 @@ class QualificationApplicationResponseTransformer {
 
     private void addSubGroups(RequirementGroup ccvGroup, TenderingCriterionPropertyGroupType parentGroup,
                               QualificationApplicationResponseType responseType) {
-        if (isEmpty(ccvGroup.getRequirementGroups())) {
+        if (isEmpty(ccvGroup.getSubgroups())) {
             return;
         }
 
         List<TenderingCriterionPropertyGroupType> subGroups = new ArrayList<>();
-        for (RequirementGroup ccvSubGroup : ccvGroup.getRequirementGroups()) {
+        for (RequirementGroup ccvSubGroup : ccvGroup.getSubgroups()) {
             subGroups.add(buildGroupType(ccvSubGroup, responseType));
         }
         parentGroup.getSubsidiaryTenderingCriterionPropertyGroup().addAll(subGroups);

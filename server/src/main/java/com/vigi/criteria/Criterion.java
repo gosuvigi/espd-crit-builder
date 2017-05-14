@@ -16,5 +16,5 @@ public class Criterion {
 
     private String description;
 
-    private List<RequirementGroup> requirementGroups;
+    private List<RequirementGroup> groups;
 }

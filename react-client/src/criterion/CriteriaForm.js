@@ -2,7 +2,8 @@
  * Created by vigi on 5/11/2017 8:38 PM.
  */
 import React from 'react';
-import {reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
+import {reduxForm, FieldArray} from 'redux-form';
 import EditCriterion from './EditCriterion';
 
 let CriteriaForm = props => {
@@ -24,10 +25,19 @@ let CriteriaForm = props => {
     )
 };
 
-export default reduxForm({
+CriteriaForm = reduxForm({
     form: 'criteriaForm', // a unique identifier for this form,
     destroyOnUnmount: false,        // <------ preserve form data
     enableReinitialize: true,       // <------ permits to reinitialize the initial values
     keepDirtyOnReinitialize: true,   // <------ keep the values added/changed by the user
 })(CriteriaForm);
+
+CriteriaForm = connect(
+    state => ({
+        initialValues: state.criteria // pull initial values from criteria reducer
+    }),
+    // {load: loadCriteria} // bind criteria loading action creator
+)(CriteriaForm);
+
+export default CriteriaForm;
 

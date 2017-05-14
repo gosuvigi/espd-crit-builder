@@ -14,5 +14,5 @@ public class RequirementGroup {
 
     private List<Requirement> requirements;
 
-    private List<RequirementGroup> requirementGroups;
+    private List<RequirementGroup> subgroups;
 }

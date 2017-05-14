@@ -61,12 +61,12 @@ class ESPDResponseTypeTransformer {
     }
 
     private void addGroups(Criterion ccvCriterion, CriterionType criterionType) {
-        if (isEmpty(ccvCriterion.getRequirementGroups())) {
+        if (isEmpty(ccvCriterion.getGroups())) {
             return;
         }
 
-        List<RequirementGroupType> groupTypes = new ArrayList<>(ccvCriterion.getRequirementGroups().size() + 1);
-        for (RequirementGroup group : ccvCriterion.getRequirementGroups()) {
+        List<RequirementGroupType> groupTypes = new ArrayList<>();
+        for (RequirementGroup group : ccvCriterion.getGroups()) {
             groupTypes.add(buildGroupType(group));
         }
         criterionType.getRequirementGroup().addAll(groupTypes);
@@ -135,12 +135,12 @@ class ESPDResponseTypeTransformer {
     }
 
     private void addSubGroups(RequirementGroup ccvGroup, RequirementGroupType parentGroup) {
-        if (isEmpty(ccvGroup.getRequirementGroups())) {
+        if (isEmpty(ccvGroup.getSubgroups())) {
             return;
         }
 
-        List<RequirementGroupType> subGroups = new ArrayList<>(parentGroup.getRequirementGroup().size() + 1);
-        for (RequirementGroup ccvSubGroup : ccvGroup.getRequirementGroups()) {
+        List<RequirementGroupType> subGroups = new ArrayList<>();
+        for (RequirementGroup ccvSubGroup : ccvGroup.getSubgroups()) {
             subGroups.add(buildGroupType(ccvSubGroup));
         }
         parentGroup.getRequirementGroup().addAll(subGroups);

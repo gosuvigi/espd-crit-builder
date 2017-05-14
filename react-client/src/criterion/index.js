@@ -6,7 +6,8 @@ import {saveAs} from 'file-saver';
 
 export const types = {
     SUBMIT_CRITERION_DEFINITION: 'SUBMIT_CRITERION_DEFINITION',
-    DOWNLOAD_FILE: 'DOWNLOAD_FILE'
+    DOWNLOAD_FILE: 'DOWNLOAD_FILE',
+    CHANGE_RESPONSE_TYPE: 'CHANGE_RESPONSE_TYPE'
 };
 
 const initialCriteria = require('./criteria.json');
@@ -46,13 +47,13 @@ function stringToArrayBuffer(s) {
     return buf;
 }
 
-export function reducer(state = {initialCriteria}, action = {}) {
+export function reducer(state = initialCriteria, action = {}) {
     switch (action.type) {
         case types.DOWNLOAD_FILE:
             let data = stringToArrayBuffer(action.payload);
             saveAs(new Blob([data], {type: "application/xml"}), "espd-response.xml");
             return state;
-        case "CHANGE_RESPONSE_TYPE":
+        case types.CHANGE_RESPONSE_TYPE:
             return state;
         default:
             return state;

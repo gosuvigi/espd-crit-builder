@@ -150,7 +150,7 @@ const renderSingleRequirementGroup = (reqGroup, index, fields, identifier, nesti
                 <FieldArray name={`${reqGroup}.requirements`} component={renderRequirements}
                             identifier={newIdentifier}
                             nesting={nesting + 1}/>
-                <FieldArray name={`${reqGroup}.requirementGroups`} component={renderRequirementGroups}
+                <FieldArray name={`${reqGroup}.subgroups`} component={renderRequirementGroups}
                             identifier={newIdentifier} nesting={nesting + 1}/>
             </div>
         </div>
@@ -177,7 +177,7 @@ const renderRequirementGroups = ({fields, meta: {error, submitFailed}, identifie
     )
 };
 
-const EditCriterion = () => {
+const EditCriterion = ({fields}) => {
     return (
         <div className="criterion col-md-12 bg-info">
             <div className="row">
@@ -201,7 +201,7 @@ const EditCriterion = () => {
                     </div>
                 </div>
                 <div className="col-md-11 col-md-offset-1">
-                    <FieldArray name="requirementGroups" component={renderRequirementGroups} identifier="" nesting={1}/>
+                    <FieldArray name="groups" component={renderRequirementGroups} identifier="" nesting={1}/>
                 </div>
             </div>
         </div>
