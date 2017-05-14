@@ -1,4 +1,4 @@
-package com.vigi.xml;
+package com.vigi.xml.v102;
 
 import com.vigi.criteria.Criterion;
 import com.vigi.criteria.Requirement;
@@ -24,7 +24,7 @@ import static org.springframework.util.CollectionUtils.isEmpty;
  * Created by vigi on 5/13/2017.
  */
 @Component
-public class ResponseTypeTransformer {
+class ESPDResponseTypeTransformer {
 
     ESPDResponseType buildResponseType(Criterion criterion) {
         ESPDResponseType responseType = new ESPDResponseType();

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Collections;
 
 import static java.lang.String.format;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -35,7 +36,7 @@ class CriteriaController {
                                     HttpServletResponse response) throws IOException {
         System.out.println(criterion);
         response.setContentType(APPLICATION_XML_VALUE);
-        ByteArrayOutputStream out = xmlExporter.generateEspdResponse(criterion);
+        ByteArrayOutputStream out = xmlExporter.generateEspdResponse(Collections.singletonList(criterion));
         serveFileForDownload(out, response);
 
         return null;
