@@ -27,15 +27,15 @@
               xmlns:xs="http://www.w3.org/2001/XMLSchema"
               xmlns:namespace="http://jaxb2-commons.dev.java.net/namespace-prefix">
 
-    <!--<jxb:globalBindings>-->
-        <!--<jxb:javaType name="org.joda.time.LocalDate" xmlType="xs:date"-->
-                      <!--parseMethod="eu.europa.ec.grow.espd.xml.LocalDateAdapter.unmarshal"-->
-                      <!--printMethod="eu.europa.ec.grow.espd.xml.LocalDateAdapter.marshal"/>-->
-        <!--<jxb:javaType name="org.joda.time.LocalTime" xmlType="xs:time"-->
-                      <!--parseMethod="eu.europa.ec.grow.espd.xml.LocalTimeAdapter.unmarshal"-->
-                      <!--printMethod="eu.europa.ec.grow.espd.xml.LocalTimeAdapter.marshal"/>-->
-        <!--<jxb:serializable uid="100"/>-->
-    <!--</jxb:globalBindings>-->
+    <jxb:globalBindings>
+        <jxb:javaType name="java.time.LocalDate" xmlType="xs:date"
+                      parseMethod="com.vigi.edm.LocalDateAdapter.unmarshal"
+                      printMethod="com.vigi.edm.LocalDateAdapter.marshal"/>
+        <jxb:javaType name="java.time.LocalTime" xmlType="xs:time"
+                      parseMethod="com.vigi.edm.LocalTimeAdapter.unmarshal"
+                      printMethod="com.vigi.edm.LocalTimeAdapter.marshal"/>
+        <jxb:serializable uid="100"/>
+    </jxb:globalBindings>
 
     <!-- Customize the names given to the namespaces -->
     <jxb:bindings schemaLocation="UBL-QualificationApplicationRequest-2.2-Pre-award.xsd">

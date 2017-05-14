@@ -10,7 +10,11 @@ import java.util.List;
 @Data
 public class Criterion {
 
+    private String id;
+
     private String name;
+
+    private String description;
 
     private List<RequirementGroup> requirementGroups;
 }

@@ -6,11 +6,11 @@ import {Field, FieldArray, formValueSelector} from 'redux-form';
 import {connect} from 'react-redux';
 
 const selector = formValueSelector('criteriaForm');
-const renderField = ({input, label, type, meta: {touched, error}}) => (
+const renderField = ({input, label, type, meta: {touched, error}, size}) => (
     <div>
         <label>{label}</label>
         <div>
-            <input {...input} type={type} placeholder={label}/>
+            <input {...input} type={type} placeholder={label} size={size}/>
             {touched && error && <span>{error}</span>}
         </div>
     </div>
@@ -32,6 +32,7 @@ let ReqResponseTypeSelector = ({input, dispatch}) => (
                 <option value="NUMBER">NUMBER</option>
                 <option value="PERIOD">PERIOD</option>
                 <option value="EVIDENCE">EVIDENCE</option>
+                <option value="CODE">CODE</option>
             </select>
         </div>
     </div>
@@ -180,13 +181,24 @@ const EditCriterion = () => {
     return (
         <div className="criterion col-md-12 bg-info">
             <div className="row">
-                <div className="col-md-4 text-left">
+                <div className="col-md-12 text-left">
                     <Field
                         name="name"
                         type="text"
                         component={renderField}
                         label="Criterion Name"
+                        size="100"
                     />
+                </div>
+                <div className="col-md-12 text-left">
+                    <label>Criterion Description</label>
+                    <div>
+                        <Field
+                            name="description"
+                            component="textarea"
+                            cols="100"
+                        />
+                    </div>
                 </div>
                 <div className="col-md-11 col-md-offset-1">
                     <FieldArray name="requirementGroups" component={renderRequirementGroups} identifier="" nesting={1}/>
