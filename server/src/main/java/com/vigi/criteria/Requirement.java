@@ -8,6 +8,8 @@ import lombok.Data;
 @Data
 public class Requirement {
 
+    private String id;
+
     private String description;
 
     private Object value;
