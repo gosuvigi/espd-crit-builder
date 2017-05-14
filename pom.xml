@@ -28,6 +28,7 @@
     <modules>
         <module>server</module>
         <module>react-client</module>
+        <module>edm</module>
     </modules>
 
 </project>
