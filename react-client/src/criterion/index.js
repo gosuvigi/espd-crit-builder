@@ -52,6 +52,8 @@ export function reducer(state = {initialCriteria}, action = {}) {
             let data = stringToArrayBuffer(action.payload);
             saveAs(new Blob([data], {type: "application/xml"}), "espd-response.xml");
             return state;
+        case "CHANGE_RESPONSE_TYPE":
+            return state;
         default:
             return state;
     }

@@ -2,8 +2,10 @@
  * Created by vigi on 5/11/2017 8:37 PM.
  */
 import React from 'react';
-import {Field, FieldArray} from 'redux-form';
+import {Field, FieldArray, formValueSelector} from 'redux-form';
+import {connect} from 'react-redux';
 
+const selector = formValueSelector('criteriaForm');
 const renderField = ({input, label, type, meta: {touched, error}}) => (
     <div>
         <label>{label}</label>
@@ -13,6 +15,34 @@ const renderField = ({input, label, type, meta: {touched, error}}) => (
         </div>
     </div>
 );
+
+let ReqResponseTypeSelector = ({input, dispatch}) => (
+    <div>
+        <label>Response Type</label>
+        <div>
+            <select {...input} onChange={event => {
+                input.onChange(event);
+                const value = event.target.value;
+                dispatch({type: "CHANGE_RESPONSE_TYPE", payload: value});
+            }}>
+                <option value="INDICATOR">INDICATOR</option>
+                <option value="DESCRIPTION">DESCRIPTION</option>
+                <option value="AMOUNT">AMOUNT</option>
+                <option value="DATE">DATE</option>
+                <option value="NUMBER">NUMBER</option>
+                <option value="PERIOD">PERIOD</option>
+                <option value="EVIDENCE">EVIDENCE</option>
+            </select>
+        </div>
+    </div>
+);
+ReqResponseTypeSelector = connect(
+    (state, props) => {
+        return {
+            responseTypes: selector(state, props.input.name) // connect to requirements array
+        }
+    }
+)(ReqResponseTypeSelector);
 
 const renderSingleRequirement = (requirement, index, fields, identifier) => {
     const newIdentifier = identifier + "." + (index + 1);
@@ -28,23 +58,38 @@ const renderSingleRequirement = (requirement, index, fields, identifier) => {
                     />
                 </div>
                 <div className="col-md-3">
-                    <label>Type</label>
                     <div>
-                        <Field
-                            name={`${requirement}.responseType`}
-                            component="select"
-                            label="Requirement Type"
-                        >
-                            <option value="INDICATOR">INDICATOR</option>
-                            <option value="DESCRIPTION">DESCRIPTION</option>
-                            <option value="AMOUNT">AMOUNT</option>
-                            <option value="DATE">DATE</option>
-                            <option value="NUMBER">NUMBER</option>
-                            <option value="PERIOD">PERIOD</option>
-                            <option value="EVIDENCE">EVIDENCE</option>
-                        </Field>
+                        {/*<Field*/}
+                        {/*name={`${requirement}.responseType`}*/}
+                        {/*component="select"*/}
+                        {/*label="Requirement Type"*/}
+                        {/*>*/}
+                        {/*<option value="INDICATOR">INDICATOR</option>*/}
+                        {/*<option value="DESCRIPTION">DESCRIPTION</option>*/}
+                        {/*<option value="AMOUNT">AMOUNT</option>*/}
+                        {/*<option value="DATE">DATE</option>*/}
+                        {/*<option value="NUMBER">NUMBER</option>*/}
+                        {/*<option value="PERIOD">PERIOD</option>*/}
+                        {/*<option value="EVIDENCE">EVIDENCE</option>*/}
+                        {/*</Field>*/}
+                        <Field name={`${requirement}.responseType`}
+                               component={ReqResponseTypeSelector}
+                               array={`${requirement}.responseTypes`}/>
                     </div>
                 </div>
+                {requirement.responseType === "INDICATOR" &&
+                <div>
+                    <label>Email</label>
+                    <div>
+                        <Field
+                            name="email"
+                            component="input"
+                            type="email"
+                            placeholder="Email"
+                        />
+                    </div>
+                </div>
+                }
                 <div className="col-md-3">
                     <Field
                         name={`${requirement}.value`}
@@ -72,7 +117,7 @@ const renderRequirements = ({fields, meta: {error}, identifier, nesting}) => (
         }
         {error && <li className="error">{error}</li>}
         <div>
-            <button type="button" onClick={() => fields.push()}>Add Requirement</button>
+            <button type="button" onClick={() => fields.push({responseType: 'INDICATOR'})}>Add Requirement</button>
         </div>
     </div>
 );
