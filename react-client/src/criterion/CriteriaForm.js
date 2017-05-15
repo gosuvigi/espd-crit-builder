@@ -21,6 +21,10 @@ let CriteriaForm = props => {
                         cols="150"
                     />
                 </div>
+                {props.parseException &&
+                <div className="alert alert-danger" role="alert">
+                    {props.parseException.message}
+                </div>}
             </div>
             <div className="col-md-1">
                 <button type="button" onClick={() => props.loadPastedJson(props.pastedJsonValue)}>Load Criterion</button>
@@ -51,7 +55,8 @@ const selector = formValueSelector('criteriaForm');
 
 const mapStateToProps = state => ({
     initialValues: state.criteria.pastedJson, // pull initial values from criteria reducer
-    pastedJsonValue: selector(state, 'pastedJson')
+    pastedJsonValue: selector(state, 'pastedJson'),
+    parseException: state.criteria.parseException
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

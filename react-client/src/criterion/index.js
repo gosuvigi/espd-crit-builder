@@ -11,8 +11,6 @@ export const types = {
     LOAD_PASTED_JSON: 'LOAD_PASTED_JSON'
 };
 
-const initialCriteria = require('./criteria.json');
-
 export const actions = {
     submitCriteria: (criterion) => {
         return (dispatch) => {
@@ -52,7 +50,7 @@ function stringToArrayBuffer(s) {
     return buf;
 }
 
-export function reducer(state = initialCriteria, action = {}) {
+export function reducer(state = {}, action = {}) {
     switch (action.type) {
         case types.DOWNLOAD_FILE:
             let data = stringToArrayBuffer(action.payload);
@@ -61,7 +59,15 @@ export function reducer(state = initialCriteria, action = {}) {
         case types.CHANGE_RESPONSE_TYPE:
             return state;
         case types.LOAD_PASTED_JSON:
-            return {...state, pastedJson: JSON.parse(action.payload)};
+            if (!action.payload) {
+                return {...state, parseException: null};
+            }
+            try {
+                const parsed = JSON.parse(action.payload);
+                return {...state, pastedJson: parsed, parseException: null};
+            } catch (e) {
+                return {...state, parseException: e};
+            }
         default:
             return state;
     }
