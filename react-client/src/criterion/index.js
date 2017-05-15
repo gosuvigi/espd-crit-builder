@@ -7,7 +7,8 @@ import {saveAs} from 'file-saver';
 export const types = {
     SUBMIT_CRITERION_DEFINITION: 'SUBMIT_CRITERION_DEFINITION',
     DOWNLOAD_FILE: 'DOWNLOAD_FILE',
-    CHANGE_RESPONSE_TYPE: 'CHANGE_RESPONSE_TYPE'
+    CHANGE_RESPONSE_TYPE: 'CHANGE_RESPONSE_TYPE',
+    LOAD_PASTED_JSON: 'LOAD_PASTED_JSON'
 };
 
 const initialCriteria = require('./criteria.json');
@@ -36,6 +37,10 @@ export const actions = {
         type: types.DOWNLOAD_FILE,
         payload: fileContent
     }),
+    loadPastedJson: (json) => ({
+        type: types.LOAD_PASTED_JSON,
+        payload: json
+    })
 };
 
 function stringToArrayBuffer(s) {
@@ -55,6 +60,8 @@ export function reducer(state = initialCriteria, action = {}) {
             return state;
         case types.CHANGE_RESPONSE_TYPE:
             return state;
+        case types.LOAD_PASTED_JSON:
+            return {...state, pastedJson: JSON.parse(action.payload)};
         default:
             return state;
     }
