@@ -7,8 +7,13 @@ import {applyMiddleware, createStore, compose} from 'redux';
 import rootReducer from './rootReducer';
 import thunk from 'redux-thunk';
 
-const store = (window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)(rootReducer, {},
-    compose(applyMiddleware(thunk)));
+const store = createStore(
+    rootReducer, {},
+    compose(
+        applyMiddleware(thunk),
+        window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
+);
 
 render(
     <Provider store={store}>
