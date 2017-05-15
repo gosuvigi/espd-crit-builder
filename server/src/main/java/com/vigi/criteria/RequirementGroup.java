@@ -10,6 +10,8 @@ import java.util.List;
 @Data
 public class RequirementGroup {
 
+    private String id;
+
     private String name;
 
     private List<Requirement> requirements;

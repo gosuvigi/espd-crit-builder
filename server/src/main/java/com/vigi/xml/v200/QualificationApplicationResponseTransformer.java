@@ -81,8 +81,8 @@ class QualificationApplicationResponseTransformer {
                                                       QualificationApplicationResponseType responseType) {
         TenderingCriterionType criterionType = new TenderingCriterionType();
 
-        if (StringUtils.hasText(criterion.getId())) {
-            criterionType.setID(buildIdType(criterion.getId()));
+        if (StringUtils.hasText(criterion.getUuid())) {
+            criterionType.setID(buildIdType(criterion.getUuid()));
         } else {
             criterionType.setID(buildIdType(UUID.randomUUID().toString()));
         }
@@ -118,16 +118,19 @@ class QualificationApplicationResponseTransformer {
                                                                QualificationApplicationResponseType responseType) {
         TenderingCriterionPropertyGroupType groupType = new TenderingCriterionPropertyGroupType();
 
-        addGroupId(groupType);
+        addGroupId(requirementGroup, groupType);
         addRequirements(requirementGroup, groupType, responseType);
         addSubGroups(requirementGroup, groupType, responseType);
 
         return groupType;
     }
 
-    private void addGroupId(TenderingCriterionPropertyGroupType groupType) {
-        IDType idType = buildIdType(UUID.randomUUID().toString());
-        groupType.setID(idType);
+    private void addGroupId(RequirementGroup requirementGroup, TenderingCriterionPropertyGroupType groupType) {
+        if (StringUtils.hasText(requirementGroup.getId())) {
+            groupType.setID(buildIdType(requirementGroup.getId()));
+        } else {
+            groupType.setID(buildIdType(UUID.randomUUID().toString()));
+        }
     }
 
     private void addRequirements(RequirementGroup group, TenderingCriterionPropertyGroupType groupType,
@@ -138,7 +141,12 @@ class QualificationApplicationResponseTransformer {
         List<TenderingCriterionPropertyType> requirementTypes = new ArrayList<>();
         List<TenderingCriterionResponseType> responseTypes = new ArrayList<>();
         for (Requirement req : group.getRequirements()) {
-            String reqId = UUID.randomUUID().toString();
+            final String reqId;
+            if (StringUtils.hasText(req.getId())) {
+                reqId = req.getId();
+            } else {
+                reqId = UUID.randomUUID().toString();
+            }
             req.setId(reqId);
             requirementTypes.add(buildRequirementType(req));
             responseTypes.add(buildResponse(req));

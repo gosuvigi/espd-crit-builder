@@ -59,6 +59,14 @@ const renderSingleRequirement = (requirement, index, fields, identifier) => {
                     />
                 </div>
                 <div className="col-md-3">
+                    <Field
+                        name={`${requirement}.id`}
+                        type="text"
+                        component={renderField}
+                        label="ID"
+                    />
+                </div>
+                <div className="col-md-2">
                     <div>
                         {/*<Field*/}
                         {/*name={`${requirement}.responseType`}*/}
@@ -78,19 +86,6 @@ const renderSingleRequirement = (requirement, index, fields, identifier) => {
                                array={`${requirement}.responseTypes`}/>
                     </div>
                 </div>
-                {requirement.responseType === "INDICATOR" &&
-                <div>
-                    <label>Email</label>
-                    <div>
-                        <Field
-                            name="email"
-                            component="input"
-                            type="email"
-                            placeholder="Email"
-                        />
-                    </div>
-                </div>
-                }
                 <div className="col-md-3">
                     <Field
                         name={`${requirement}.value`}
@@ -131,6 +126,23 @@ const renderSingleRequirementGroup = (reqGroup, index, fields, identifier, nesti
                 <div className="col-md-3">
                     <h4>Requirement group #{newIdentifier}</h4>
                 </div>
+                <div className="col-md-3">
+                    <Field
+                        name={`${reqGroup}.name`}
+                        type="text"
+                        component={renderField}
+                        label="Group Name"
+                        className="text-left"
+                    />
+                </div>
+                <div className="col-md-3">
+                    <Field
+                        name={`${reqGroup}.id`}
+                        type="text"
+                        component={renderField}
+                        label="ID"
+                    />
+                </div>
                 <div className="col-md-1">
                     <button
                         type="button" className="btn btn-danger glyphicon glyphicon-trash"
@@ -140,13 +152,8 @@ const renderSingleRequirementGroup = (reqGroup, index, fields, identifier, nesti
                 </div>
             </div>
             <div className="row">
-                <Field
-                    name={`${reqGroup}.name`}
-                    type="text"
-                    component={renderField}
-                    label="Group Name"
-                    className="text-left"
-                />
+
+
                 <FieldArray name={`${reqGroup}.requirements`} component={renderRequirements}
                             identifier={newIdentifier}
                             nesting={nesting + 1}/>
@@ -181,7 +188,7 @@ const EditCriterion = ({fields}) => {
     return (
         <div className="criterion col-md-12 bg-info">
             <div className="row">
-                <div className="col-md-12 text-left">
+                <div className="col-md-6 text-left">
                     <Field
                         name="name"
                         type="text"
@@ -190,7 +197,16 @@ const EditCriterion = ({fields}) => {
                         size="100"
                     />
                 </div>
-                <div className="col-md-12 text-left">
+                <div className="col-md-6 text-left">
+                    <Field
+                        name="uuid"
+                        type="text"
+                        component={renderField}
+                        label="UUID"
+                        size="100"
+                    />
+                </div>
+                <div className="col-md-6 text-left">
                     <label>Criterion Description</label>
                     <div>
                         <Field
