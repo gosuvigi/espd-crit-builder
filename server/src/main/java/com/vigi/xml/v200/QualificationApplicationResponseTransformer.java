@@ -4,7 +4,7 @@ import com.vigi.criteria.Criterion;
 import com.vigi.criteria.Requirement;
 import com.vigi.criteria.RequirementGroup;
 import com.vigi.criteria.ResponseType;
-import com.vigi.edm.LocalDateAdapter;
+import eu.europa.ec.grow.espd.edm.xml.LocalDateAdapter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import test.x.ubl.pre_award.commonaggregate.*;
@@ -188,7 +188,8 @@ class QualificationApplicationResponseTransformer {
         idType.setValue(requirement.getId());
         responseType.setValidatedCriterionRequirementID(idType);
 
-        if (ResponseType.EVIDENCE.equals(requirement.getResponseType())) {
+        if (ResponseType.EVIDENCE.equals(requirement.getResponseType()) ||
+                ResponseType.EVIDENCE_URL.equals(requirement.getResponseType())) {
             EvidenceSuppliedType evidenceSuppliedType = new EvidenceSuppliedType();
             evidenceSuppliedType.setID(evidenceType.getID());
             responseType.getEvidenceSupplied().add(evidenceSuppliedType);
@@ -236,7 +237,8 @@ class QualificationApplicationResponseTransformer {
             ResponseNumericType numeric = new ResponseNumericType();
             numeric.setValue(new BigDecimal((String) requirement.getValue()));
             responseValueType.setResponseNumeric(numeric);
-        } else if (ResponseType.CODE.equals(requirement.getResponseType())) {
+        } else if (ResponseType.CODE.equals(requirement.getResponseType()) ||
+                ResponseType.CODE_COUNTRY.equals(requirement.getResponseType())) {
             ResponseCodeType responseCodeType = new ResponseCodeType();
             responseCodeType.setValue(requirement.getValue().toString());
             responseValueType.setResponseCode(responseCodeType);

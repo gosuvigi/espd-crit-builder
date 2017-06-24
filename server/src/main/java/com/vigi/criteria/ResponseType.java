@@ -12,5 +12,7 @@ public enum ResponseType {
     DATE,
     PERIOD,
     EVIDENCE,
-    CODE
+    EVIDENCE_URL,
+    CODE,
+    CODE_COUNTRY
 }
