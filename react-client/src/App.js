@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 import CriteriaForm from './criterion/CriteriaForm';
 import {actions} from './criterion/index';
-import {Values} from 'redux-form-website-template';
+import Values from './Values';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
