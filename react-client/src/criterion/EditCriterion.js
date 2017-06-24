@@ -4,6 +4,8 @@
 import React from 'react';
 import {Field, FieldArray, formValueSelector} from 'redux-form';
 import {connect} from 'react-redux';
+import Collapse from 'rc-collapse';
+const Panel = Collapse.Panel;
 
 const selector = formValueSelector('criteriaForm');
 const renderField = ({input, label, type, meta: {touched, error}, size}) => (
@@ -121,46 +123,45 @@ const renderRequirements = ({fields, meta: {error}, identifier, nesting}) => (
 const renderSingleRequirementGroup = (reqGroup, index, fields, identifier, nesting) => {
     const newIdentifier = !identifier ? (index + 1) : identifier + "." + (index + 1);
     return (
-        <div key={index} className="requirement-group list-group-item list-group-item-warning text-left">
-            <div className="row">
-                <div className="col-md-3">
-                    <h4>Requirement group #{newIdentifier}</h4>
+        <Collapse accordion={false} key={`collapse${newIdentifier}.${nesting}`}>
+            <Panel header={`Requirement group #${newIdentifier}`} key={`panel${newIdentifier}.${nesting}`}>
+                <div key={index} className="requirement-group list-group-item list-group-item-warning text-left">
+                    <div className="row">
+                        <div className="col-md-3">
+                            <Field
+                                name={`${reqGroup}.name`}
+                                type="text"
+                                component={renderField}
+                                label="Group Name"
+                                className="text-left"
+                            />
+                        </div>
+                        <div className="col-md-3">
+                            <Field
+                                name={`${reqGroup}.id`}
+                                type="text"
+                                component={renderField}
+                                label="ID"
+                            />
+                        </div>
+                        <div className="col-md-1">
+                            <button
+                                type="button" className="btn btn-danger glyphicon glyphicon-trash"
+                                title="Remove Requirement Group"
+                                onClick={() => fields.remove(index)}
+                            />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <FieldArray name={`${reqGroup}.requirements`} component={renderRequirements}
+                                    identifier={newIdentifier}
+                                    nesting={nesting + 1}/>
+                        <FieldArray name={`${reqGroup}.subgroups`} component={renderRequirementGroups}
+                                    identifier={newIdentifier} nesting={nesting + 1}/>
+                    </div>
                 </div>
-                <div className="col-md-3">
-                    <Field
-                        name={`${reqGroup}.name`}
-                        type="text"
-                        component={renderField}
-                        label="Group Name"
-                        className="text-left"
-                    />
-                </div>
-                <div className="col-md-3">
-                    <Field
-                        name={`${reqGroup}.id`}
-                        type="text"
-                        component={renderField}
-                        label="ID"
-                    />
-                </div>
-                <div className="col-md-1">
-                    <button
-                        type="button" className="btn btn-danger glyphicon glyphicon-trash"
-                        title="Remove Requirement Group"
-                        onClick={() => fields.remove(index)}
-                    />
-                </div>
-            </div>
-            <div className="row">
-
-
-                <FieldArray name={`${reqGroup}.requirements`} component={renderRequirements}
-                            identifier={newIdentifier}
-                            nesting={nesting + 1}/>
-                <FieldArray name={`${reqGroup}.subgroups`} component={renderRequirementGroups}
-                            identifier={newIdentifier} nesting={nesting + 1}/>
-            </div>
-        </div>
+            </Panel>
+        </Collapse>
     )
 };
 
