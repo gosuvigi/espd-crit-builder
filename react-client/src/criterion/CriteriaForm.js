@@ -35,7 +35,7 @@ let CriteriaForm = props => {
                 </div>
                 <div className="row">
                     <button type="submit" disabled={submitting} className="btn btn-primary">Submit</button>
-                    <button type="button" disabled={pristine || submitting} onClick={reset} className="btn btn-default">
+                    <button type="button" disabled={submitting} onClick={reset} className="btn btn-default">
                         Clear Values
                     </button>
                 </div>

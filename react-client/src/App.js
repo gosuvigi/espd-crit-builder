@@ -7,6 +7,8 @@ import CriteriaForm from './criterion/CriteriaForm';
 import {actions} from './criterion/index';
 import Values from './Values';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'react-pretty-json/assets/json-view.css';
+import 'rc-collapse/assets/index.css';
 
 class App extends Component {
 

@@ -3,15 +3,15 @@
  */
 import React from 'react';
 import { values as valuesDecorator } from 'redux-form';
-import Code from './Code';
+import JsonView from 'react-pretty-json';
 
-const Values = ({ form, format = values => JSON.stringify(values, null, 2) }) => {
+const Values = ({ form }) => {
     const decorator = valuesDecorator({ form });
-    const component = ({ values }) =>
+    const component = ({ values = {} }) =>
         (
             <div>
                 <h2>Values</h2>
-                <Code source={format(values)}/>
+                <JsonView id="json-pretty" json={values}></JsonView>
             </div>
         );
     const Decorated = decorator(component);
